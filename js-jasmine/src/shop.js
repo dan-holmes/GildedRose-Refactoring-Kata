@@ -1,10 +1,11 @@
 import getItemTypes from './utils/get_item_types';
 import standardItem from './utils/standard_item';
+
+const MAX_QUALITY = 50;
+const MIN_QUALITY = 0;
 class Shop {
   constructor(items = []) {
     this.items = items;
-    this.MAX_QUALITY = 50;
-    this.MIN_QUALITY = 0;
   }
   updateQuality() {
     this.items.forEach(item =>
@@ -44,14 +45,14 @@ class Shop {
   }
 
   _checkMaxQuality(item) {
-    if (item.quality > this.MAX_QUALITY) {
-      item.quality = this.MAX_QUALITY;
+    if (item.quality > MAX_QUALITY) {
+      item.quality = MAX_QUALITY;
     }
   }
 
   _checkMinQuality(item) {
-    if (item.quality < this.MIN_QUALITY) {
-      item.quality = this.MIN_QUALITY;
+    if (item.quality < MIN_QUALITY) {
+      item.quality = MIN_QUALITY;
     }
   }
 }
