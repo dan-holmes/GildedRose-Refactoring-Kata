@@ -1,13 +1,5 @@
-var glob = require('glob')
-  , path = require('path');
-
-let itemTypes = [];
-
-glob.sync('./src/item_types/**/*.js').forEach(function (file) {
-  itemTypes.push(require(path.resolve(file)));
-});
-
-const standardItem = require('./standard_update.js');
+import getItemTypes from './utils/get_item_types';
+import standardItem from './utils/standard_item';
 class Shop {
   constructor(items = []) {
     this.items = items;
@@ -32,7 +24,7 @@ class Shop {
   }
 
   _conditionallyUpdateQuality(item) {
-    for (const itemType of itemTypes) {
+    for (const itemType of getItemTypes()) {
       if (item.name.toLowerCase().match(itemType.regex_matcher)) {
         return item.quality += itemType.qualityChange(item.sellIn, item.quality);
       }
