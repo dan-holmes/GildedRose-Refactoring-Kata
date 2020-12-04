@@ -36,9 +36,12 @@ class Shop {
   }
 
   _updateItemSellIn(item) {
-    if (item.name != 'Sulfuras, Hand of Ragnaros') {
-      item.sellIn = item.sellIn - 1;
-    }
+    if (this._isSulfuras(item)) return;
+    item.sellIn = item.sellIn - 1;
+  }
+
+  _isSulfuras(item) {
+    return item.name.toLowerCase().match(/sulfuras/)
   }
 
   _checkQualityBounds(item) {
