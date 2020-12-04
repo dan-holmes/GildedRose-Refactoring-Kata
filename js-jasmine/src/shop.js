@@ -3,6 +3,8 @@ import standardItem from './utils/standard_item';
 
 const MAX_QUALITY = 50;
 const MIN_QUALITY = 0;
+
+const itemTypes = getItemTypes().concat([standardItem])
 class Shop {
   constructor(items = []) {
     this.items = items;
@@ -26,7 +28,7 @@ class Shop {
   }
 
   _conditionallyUpdateQuality(item) {
-    getItemTypes().forEach(itemType => {
+    itemTypes.forEach(itemType => {
       if (itemType.is(item)) {
         itemType.updateQuality(item);
       }
