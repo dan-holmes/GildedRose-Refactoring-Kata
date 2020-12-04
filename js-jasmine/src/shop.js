@@ -1,4 +1,5 @@
 import getItemTypes from './utils/get_item_types';
+import sulfuras from './utils/item_types/sulfuras_update'
 import standardItem from './utils/standard_item';
 import qualityBounds from './utils/quality_bounds'
 
@@ -34,12 +35,8 @@ class Shop {
   }
 
   _updateItemSellIn(item) {
-    if (this._isSulfuras(item)) return;
+    if (sulfuras.is(item)) return;
     item.sellIn = item.sellIn - 1;
-  }
-
-  _isSulfuras(item) {
-    return item.name.toLowerCase().match(/sulfuras/)
   }
 }
 module.exports = {
