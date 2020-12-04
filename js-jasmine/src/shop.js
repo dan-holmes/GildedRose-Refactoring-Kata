@@ -1,8 +1,6 @@
 import getItemTypes from './utils/get_item_types';
 import standardItem from './utils/standard_item';
-
-const MAX_QUALITY = 50;
-const MIN_QUALITY = 0;
+import qualityBounds from './utils/quality_bounds'
 
 const itemTypes = getItemTypes().concat([standardItem])
 class Shop {
@@ -24,7 +22,7 @@ class Shop {
 
   _updateItemQuality(item) {
     this._conditionallyUpdateQuality(item);
-    this._checkQualityBounds(item);
+    qualityBounds.check(item);
   }
 
   _conditionallyUpdateQuality(item) {
@@ -42,23 +40,6 @@ class Shop {
 
   _isSulfuras(item) {
     return item.name.toLowerCase().match(/sulfuras/)
-  }
-
-  _checkQualityBounds(item) {
-    this._checkMaxQuality(item);
-    this._checkMinQuality(item);
-  }
-
-  _checkMaxQuality(item) {
-    if (item.quality > MAX_QUALITY) {
-      item.quality = MAX_QUALITY;
-    }
-  }
-
-  _checkMinQuality(item) {
-    if (item.quality < MIN_QUALITY) {
-      item.quality = MIN_QUALITY;
-    }
   }
 }
 module.exports = {
