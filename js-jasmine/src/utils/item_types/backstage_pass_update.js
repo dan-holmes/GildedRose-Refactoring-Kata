@@ -1,12 +1,14 @@
-exports.regex_matcher = /backstage pass/;
-exports.qualityChange = function (sellIn, quality) {
-  if (sellIn <= 0) {
-    return -quality;
-  } else if (sellIn <= 5) {
-    return 3;
-  } else if (sellIn <= 10) {
-    return 2;
+exports.is = function (item) {
+  return item.name.toLowerCase().match(/backstage pass/);
+};
+exports.updateQuality = function (item) {
+  if (item.sellIn <= 0) {
+    item.quality = 0;
+  } else if (item.sellIn <= 5) {
+    item.quality += 3;
+  } else if (item.sellIn <= 10) {
+    item.quality += 2;
   } else {
-    return 1;
+    item.quality += 1;
   }
 };

@@ -1,8 +1,10 @@
-exports.regex_matcher = /aged brie/;
-exports.qualityChange = function (sellIn) {
-  if (sellIn <= 0) {
-    return 2;
+exports.is = function (item) {
+  return item.name.toLowerCase().match(/aged brie/);
+};
+exports.updateQuality = function (item) {
+  if (item.sellIn <= 0) {
+    item.quality += 2;
   } else {
-    return 1;
+    item.quality += 1;
   }
 };

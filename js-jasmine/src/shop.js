@@ -7,6 +7,7 @@ class Shop {
   constructor(items = []) {
     this.items = items;
   }
+
   updateQuality() {
     this.items.forEach(item =>
       this._updateItem(item)
@@ -25,12 +26,11 @@ class Shop {
   }
 
   _conditionallyUpdateQuality(item) {
-    for (const itemType of getItemTypes()) {
-      if (item.name.toLowerCase().match(itemType.regex_matcher)) {
-        return item.quality += itemType.qualityChange(item.sellIn, item.quality);
+    getItemTypes().forEach(itemType => {
+      if (itemType.is(item)) {
+        itemType.updateQuality(item);
       }
-    }
-    return item.quality += standardItem.qualityChange(item.sellIn);
+    })
   }
 
   _updateItemSellIn(item) {

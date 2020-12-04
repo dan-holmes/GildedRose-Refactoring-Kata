@@ -1,8 +1,10 @@
-exports.regex_matcher = /conjured/;
-exports.qualityChange = function (sellIn) {
-  if (sellIn <= 0) {
-    return -4;
+exports.is = function (item) {
+  return item.name.toLowerCase().match(/conjured/);
+};
+exports.updateQuality = function (item) {
+  if (item.sellIn <= 0) {
+    item.quality -= 4;
   } else {
-    return -2;
+    item.quality -= 2;
   }
 };

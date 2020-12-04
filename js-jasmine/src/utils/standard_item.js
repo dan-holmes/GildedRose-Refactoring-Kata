@@ -1,7 +1,7 @@
-exports.qualityChange = function (sellIn) {
-  if (sellIn <= 0) {
-    return -2;
+exports.updateQuality = function (item) {
+  if (item.sellIn <= 0) {
+    item.quality -= 2;
   } else {
-    return -1;
+    item.quality -= 1;
   }
 };
